@@ -1,1 +1,111 @@
-hi~
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+    <meta name="keywords" content="「 熊 · 文 」" />
+    <meta name="description" content="「 熊 · 文 」" />
+    <meta name="author" content="「 熊 · 文 」" />
+    <meta name="copyright" content="「 熊 · 文 」" />
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="stylesheet" href="./style.css">
+    <link href="./img.css" rel="stylesheet" media="screen">
+    <title>「 熊 · 文 」xiongwen1987.cn</title>
+</head>
+<body>
+<ul class="cb-slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+    <div id="background" class="wall"></div>
+    <div id="midground" class="wall"></div>
+    <div id="foreground" class="wall"></div>
+    <div id="top" class="wall"></div>
+    <div class="main">
+        <div><a href="http://xiongwen1987.cn" class="return-home a1"></a></div>
+        <div style="text-align: right;"><a href="http://xiongwen1987.cn" class="return-home a2"></a></div>
+    </div>
+    </div>
+    <script>
+        window.onload = function () {
+            var hitokoto = document.querySelector('.a1');
+            var from = document.querySelector('.a2');
+            var bk = document.getElementById('background');
+            update();
+            function update() {
+                gethi = new XMLHttpRequest();
+                gethi.open("GET", "https://v1.hitokoto.cn/");
+                gethi.send();
+                gethi.onreadystatechange = function () {
+                    if (gethi.readyState === 4 && gethi.status === 200) {
+                        var Hi = JSON.parse(gethi.responseText);
+                        hitokoto.innerHTML = Hi.hitokoto;
+                        from.innerHTML = "&#10168&#10084" + Hi.from; //可自定义输出格式
+                    }
+                }
+            }
+        }
+    </script>
+    <audio id="backgroud-music" autoplay="autoplay" loop="loop">
+        <source src="https://api.uomg.com/api/rand.music?mid=2036814353&format=mp3">
+    </audio>
+    <footer id="site-footer">
+<p style="float:center; height:10px; color:#fff; text-shadow:1px 1px 1px #888888;">© 2013-2020「 熊 · 文 」已陪伴<span id="htmer_time"></p>
+<script>
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }</script>
+<script type="text/javascript" language="javascript">
+    function setTime() {
+        var create_time = Math.round(new Date(Date.UTC(2013, 02, 20, 0, 0, 0)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+                + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+                + '秒';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }    setInterval(setTime, 1000);</script>
+        <br>
+    </footer>
+<script type="text/javascript">
+<!--
+document.oncontextmenu=function(e){return false;}
+// --></script>
+</body>
+</html>
